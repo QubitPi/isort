@@ -1,2 +1,102 @@
-docs_dir: rtd
-site_name: "isort redirect"
+site_name: 'isort Documentation'
+site_description: 'A Python utility / library to sort imports.'
+site_author: 'QubitPi (https://github.com/Qubitpi)'
+copyright: '<p>&copy <a href="https://github.com/QubitPi/isort"><em>Jiaqi Liu</em></a><br/><span>This project is licensed under the MIT License (MIT).</span></p>'
+repo_name: 'isort'
+repo_url: 'https://github.com/QubitPi/isort'
+edit_uri: 'edit/master/docs'
+docs_dir: 'docs'
+site_url: 'https://isort.qubitpi.org'
+
+theme:
+  name: 'material'
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.expand
+    - navigation.instant
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+  palette:
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: indigo
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+# We do not use `mike`, but enabling this will enable the version selector UI.
+# It references `versions.json` on `gh-pages` branch,
+# however we have a basic setup that only matches `version` to a subdirectory.
+extra:
+  version:
+    provider: mike
+
+markdown_extensions:
+  - toc:
+      anchorlink: true
+  - abbr
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.magiclink
+  - pymdownx.inlinehilite
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      extend_pygments_lang:
+        - name: yml
+          lang: yaml
+        - name: cf
+          lang: cfg
+        - name: conf
+          lang: cfg
+        - name: env
+          lang: properties
+        # We only show PHP snippets, requires config change to work:
+        # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#highlight
+        # https://facelessuser.github.io/pymdown-extensions/extensions/highlight/#extended-pygments-lexer-options
+        - name: php
+          lang: php
+          options:
+            startinline: true
+        # A variant that sometimes has nicer syntax highlighting:
+        - name: cf-extra
+          lang: linuxconfig
+        - name: cli-syntax
+          lang: linuxconfig
+        # These formats aren't supported by Python Pygments lexer,
+        # but we use them when the context is appropriate.
+        - name: log
+          lang: shell-session
+        - name: fetchmailrc
+          lang: txt
+        - name: getmailrc
+          lang: txt
+        - name: caddyfile
+          lang: txt
